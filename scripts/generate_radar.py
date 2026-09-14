@@ -3,44 +3,53 @@
 Genera un radar chart (SVG) a partir de assets/skills.json, dibujado a mano
 (sin matplotlib) para poder animar el trazado con SMIL: la línea se "dibuja"
 al cargar la página y el área se rellena progresivamente.
-
+ 
 Crea: assets/radar-dark.svg y assets/radar-light.svg
-
+ 
 Uso:
     python3 scripts/generate_radar.py
 """
-
+ 
 import json
 import math
 from pathlib import Path
-
+ 
 ROOT = Path(__file__).resolve().parent.parent
 SKILLS_FILE = ROOT / "assets" / "skills.json"
-
+ 
 ACCENT = "#B85040"
 SIZE = 420
 CENTER = SIZE / 2
 MAX_R = 150
 MAX_VALUE = 10
 RINGS = (2, 4, 6, 8, 10)
-
+ 
 THEMES = {
     "dark": {"bg": "#0d1117", "grid": "#30363d", "text": "#c9d1d9", "fill_alpha": 0.35},
     "light": {"bg": "#ffffff", "grid": "#d0d7de", "text": "#24292f", "fill_alpha": 0.25},
 }
-
-
+ 
+ 
+def esc(s: str) -> str:
+    return (
+        str(s)
+        .replace("&", "&amp;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+    )
+ 
+ 
 def load_skills():
     data = json.loads(SKILLS_FILE.read_text(encoding="utf-8"))
     return data["skills"]
-
-
+ 
+ 
 def point(angle, radius):
     x = CENTER + radius * math.sin(angle)
     y = CENTER - radius * math.cos(angle)
     return x, y
-
-
+ 
+ 
 def polygon_points(values, n):
     pts = []
     for i, v in enumerate(values):
@@ -48,8 +57,8 @@ def polygon_points(values, n):
         r = (v / MAX_VALUE) * MAX_R
         pts.append(point(angle, r))
     return pts
-
-
+ 
+ 
 def path_length(pts):
     total = 0.0
     for i in range(len(pts)):
@@ -57,20 +66,20 @@ def path_length(pts):
         x2, y2 = pts[(i + 1) % len(pts)]
         total += math.hypot(x2 - x1, y1 - y2 if False else y2 - y1)
     return total
-
-
+ 
+ 
 def make_radar_svg(skills: dict, theme_name: str) -> str:
     theme = THEMES[theme_name]
     labels = list(skills.keys())
     values = list(skills.values())
     n = len(labels)
-
+ 
     grid_circles = "".join(
         f'<circle cx="{CENTER}" cy="{CENTER}" r="{(ring / MAX_VALUE) * MAX_R:.1f}" '
         f'fill="none" stroke="{theme["grid"]}" stroke-width="1"/>\n'
         for ring in RINGS
     )
-
+ 
     spokes = ""
     label_els = ""
     for i, label in enumerate(labels):
@@ -89,14 +98,14 @@ def make_radar_svg(skills: dict, theme_name: str) -> str:
         label_els += (
             f'<text x="{lx:.1f}" y="{ly:.1f}" fill="{theme["text"]}" font-size="12" '
             f'font-family="Segoe UI, Helvetica, Arial, sans-serif" text-anchor="{anchor}" '
-            f'dominant-baseline="middle">{label} ({values[i]})</text>\n'
+            f'dominant-baseline="middle">{esc(label)} ({values[i]})</text>\n'
         )
-
+ 
     pts = polygon_points(values, n)
     poly_str = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
     poly_str_closed = poly_str + f" {pts[0][0]:.1f},{pts[0][1]:.1f}"
     length = path_length(pts)
-
+ 
     svg = f'''<svg width="{SIZE}" height="{SIZE}" viewBox="0 0 {SIZE} {SIZE}" xmlns="http://www.w3.org/2000/svg">
   <rect width="{SIZE}" height="{SIZE}" fill="{theme["bg"]}"/>
   {grid_circles}
@@ -113,8 +122,8 @@ def make_radar_svg(skills: dict, theme_name: str) -> str:
   {label_els}
 </svg>'''
     return svg
-
-
+ 
+ 
 def main():
     skills = load_skills()
     out_dir = ROOT / "assets"
@@ -124,7 +133,8 @@ def main():
         out_path = out_dir / f"radar-{theme_name}.svg"
         out_path.write_text(svg, encoding="utf-8")
         print(f"Generado {out_path}")
-
-
+ 
+ 
 if __name__ == "__main__":
     main()
+ 
