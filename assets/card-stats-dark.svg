@@ -3,13 +3,13 @@
   <text x="28" y="34" fill="#c9d1d9" font-size="17" font-weight="700">miguelmartt · estadísticas de GitHub</text>
   <line x1="28" y1="46" x2="392" y2="46" stroke="#30363d"/>
     <text x="28" y="70" fill="#8b949e" font-size="14">Repos públicos</text>
-    <text x="392" y="70" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">—</text>
+    <text x="392" y="70" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">3</text>
     <text x="28" y="96" fill="#8b949e" font-size="14">Commits (aprox.)</text>
-    <text x="392" y="96" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">—</text>
+    <text x="392" y="96" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">12</text>
     <text x="28" y="122" fill="#8b949e" font-size="14">Estrellas</text>
-    <text x="392" y="122" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">—</text>
+    <text x="392" y="122" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">2</text>
     <text x="28" y="148" fill="#8b949e" font-size="14">Forks</text>
-    <text x="392" y="148" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">—</text>
+    <text x="392" y="148" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">2</text>
     <text x="28" y="174" fill="#8b949e" font-size="14">Seguidores</text>
-    <text x="392" y="174" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">—</text>
+    <text x="392" y="174" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">0</text>
 </svg>
