@@ -18,9 +18,12 @@ ROOT = Path(__file__).resolve().parent.parent
 SKILLS_FILE = ROOT / "assets" / "skills.json"
  
 ACCENT = "#B85040"
-SIZE = 420
-CENTER = SIZE / 2
-MAX_R = 150
+WIDTH = 600
+HEIGHT = 440
+CENTER_X = WIDTH / 2
+CENTER_Y = HEIGHT / 2
+MAX_R = 130
+LABEL_GAP = 30
 MAX_VALUE = 10
 RINGS = (2, 4, 6, 8, 10)
  
@@ -45,8 +48,8 @@ def load_skills():
  
  
 def point(angle, radius):
-    x = CENTER + radius * math.sin(angle)
-    y = CENTER - radius * math.cos(angle)
+    x = CENTER_X + radius * math.sin(angle)
+    y = CENTER_Y - radius * math.cos(angle)
     return x, y
  
  
@@ -75,7 +78,7 @@ def make_radar_svg(skills: dict, theme_name: str) -> str:
     n = len(labels)
  
     grid_circles = "".join(
-        f'<circle cx="{CENTER}" cy="{CENTER}" r="{(ring / MAX_VALUE) * MAX_R:.1f}" '
+        f'<circle cx="{CENTER_X}" cy="{CENTER_Y}" r="{(ring / MAX_VALUE) * MAX_R:.1f}" '
         f'fill="none" stroke="{theme["grid"]}" stroke-width="1"/>\n'
         for ring in RINGS
     )
@@ -86,19 +89,19 @@ def make_radar_svg(skills: dict, theme_name: str) -> str:
         angle = i / n * 2 * math.pi
         x, y = point(angle, MAX_R)
         spokes += (
-            f'<line x1="{CENTER}" y1="{CENTER}" x2="{x:.1f}" y2="{y:.1f}" '
+            f'<line x1="{CENTER_X}" y1="{CENTER_Y}" x2="{x:.1f}" y2="{y:.1f}" '
             f'stroke="{theme["grid"]}" stroke-width="1"/>\n'
         )
-        lx, ly = point(angle, MAX_R + 28)
+        lx, ly = point(angle, MAX_R + LABEL_GAP)
         anchor = "middle"
-        if lx < CENTER - 5:
+        if lx < CENTER_X - 5:
             anchor = "end"
-        elif lx > CENTER + 5:
+        elif lx > CENTER_X + 5:
             anchor = "start"
         label_els += (
             f'<text x="{lx:.1f}" y="{ly:.1f}" fill="{theme["text"]}" font-size="12" '
             f'font-family="Segoe UI, Helvetica, Arial, sans-serif" text-anchor="{anchor}" '
-            f'dominant-baseline="middle">{esc(label)} ({values[i]})</text>\n'
+            f'dominant-baseline="middle">{esc(label)}</text>\n'
         )
  
     pts = polygon_points(values, n)
@@ -106,8 +109,8 @@ def make_radar_svg(skills: dict, theme_name: str) -> str:
     poly_str_closed = poly_str + f" {pts[0][0]:.1f},{pts[0][1]:.1f}"
     length = path_length(pts)
  
-    svg = f'''<svg width="{SIZE}" height="{SIZE}" viewBox="0 0 {SIZE} {SIZE}" xmlns="http://www.w3.org/2000/svg">
-  <rect width="{SIZE}" height="{SIZE}" fill="{theme["bg"]}"/>
+    svg = f'''<svg width="{WIDTH}" height="{HEIGHT}" viewBox="0 0 {WIDTH} {HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+  <rect width="{WIDTH}" height="{HEIGHT}" fill="{theme["bg"]}"/>
   {grid_circles}
   {spokes}
   <polygon points="{poly_str}" fill="{ACCENT}" fill-opacity="0">
