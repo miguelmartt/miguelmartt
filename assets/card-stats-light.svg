@@ -5,7 +5,7 @@
     <text x="28" y="70" fill="#57606a" font-size="14">Repos públicos</text>
     <text x="392" y="70" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">3</text>
     <text x="28" y="96" fill="#57606a" font-size="14">Commits (aprox.)</text>
-    <text x="392" y="96" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">15</text>
+    <text x="392" y="96" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">16</text>
     <text x="28" y="122" fill="#57606a" font-size="14">Estrellas</text>
     <text x="392" y="122" fill="#B85040" font-size="14" font-weight="700" text-anchor="end">2</text>
     <text x="28" y="148" fill="#57606a" font-size="14">Forks</text>
