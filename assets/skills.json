@@ -1,11 +1,11 @@
 {
   "_comment": "Autoevaluación de habilidades (0-10). Edita los valores y haz push: el workflow regenera el radar automáticamente.",
   "skills": {
-    "PHP & Laravel": 7,
+    "PHP & Laravel": 8,
     "Automatización": 9,
     "DevOps & VPS": 8,
     "Bases de Datos": 7,
     "JavaScript / Frontend": 7,
-    "IA / LLM": 0
+    "IA / LLM": 9
   }
 }
