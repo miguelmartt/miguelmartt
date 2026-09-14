@@ -1,0 +1,50 @@
+name: Actualizar assets del README
+
+on:
+  schedule:
+    # Cada día a las 05:00 UTC (07:00 en España en horario de verano)
+    - cron: "0 5 * * *"
+  push:
+    branches: [main]
+    paths:
+      - "assets/skills.json"
+      - "scripts/**"
+      - ".github/workflows/update-assets.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r scripts/requirements.txt
+
+      - name: Generar radar de habilidades
+        run: python3 scripts/generate_radar.py
+
+      - name: Generar banner de terminal
+        run: python3 scripts/generate_terminal_banner.py
+
+      - name: Generar tarjeta de estadísticas
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/generate_stats_card.py miguelmartt
+
+      - name: Commit de los assets generados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/*.svg
+          git diff --cached --quiet || git commit -m "chore: actualizar radar y estadísticas [skip ci]"
+          git push

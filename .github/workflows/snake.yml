@@ -1,0 +1,29 @@
+name: Generar snake de contribuciones
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generar snake.svg
+        uses: Platane/snk@v3
+        with:
+          github_user_name: miguelmartt
+          outputs: |
+            assets/snake-dark.svg?palette=github-dark
+            assets/snake-light.svg?palette=github-light
+
+      - name: Publicar en la rama "output"
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: assets
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
