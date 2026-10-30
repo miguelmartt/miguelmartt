@@ -47,7 +47,7 @@ Desarrollador full stack especializado en aplicaciones web y automatización de 
 
 **Automatización**
 
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)
+![systemd](https://img.shields.io/badge/systemd-201A1A?style=for-the-badge&logo=linux&logoColor=white)
 ![OpenClaw](https://img.shields.io/badge/OpenClaw-1A1A2E?style=for-the-badge)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Telegram API](https://img.shields.io/badge/Telegram_API-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)
@@ -88,9 +88,9 @@ Diseño flujos que eliminan tareas manuales y vigilan la infraestructura sin que
 - **Scripting y ETL con Python** — datos → PDF, email o base de datos.
 
 **VertiGuard — Monitorización de servidores** · _producto propio_
-> Suite de vigilancia para VPS construida en n8n. Comprueba servicios (nginx, MariaDB, n8n), uso de disco/RAM, caducidad de certificados SSL, copias de seguridad en la nube, intentos de intrusión y disponibilidad externa; avisa por Telegram solo cuando algo cambia. Incluye un agente DevOps con IA que ejecuta diagnósticos bajo demanda. **8 módulos en producción.**
+> Vigilancia para VPS que vive en el propio servidor: un servicio de Python gestionado por systemd, sin plataformas de por medio. Comprueba servicios y webs, uso de disco/RAM, caducidad de certificados SSL, copias de seguridad en la nube, intentos de intrusión, actualizaciones y disponibilidad externa; avisa por Telegram solo cuando algo cambia. Incluye un bot DevOps con botones y chat con IA para consultar el servidor y reiniciar servicios con confirmación. **En producción en mi VPS.**
 
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![Bash](https://img.shields.io/badge/Bash-4EAA25?style=flat-square&logo=gnu-bash&logoColor=white)
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
 ![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=flat-square&logo=telegram&logoColor=white)
@@ -101,9 +101,9 @@ Diseño flujos que eliminan tareas manuales y vigilan la infraestructura sin que
 ### Open Source
 
 **vertice-automations** · _[github.com/miguelmartt/vertice-automations](https://github.com/miguelmartt/vertice-automations)_
-> Repositorio público con mis flujos de n8n documentados y saneados, listos para reutilizar (empezando por la familia VertiGuard). Documentación bilingüe e integración continua que valida los JSON y escanea credenciales. Voy publicando aquí cada automatización.
+> Repositorio público con mis automatizaciones, listas para instalar en cualquier servidor: servicios pequeños de Python gestionados por systemd, sin plataformas ni dependencias. VertiGuard, avisos del formulario web a Telegram, un asistente personal y un kit para agencias. Documentación bilingüe, tests y CI que busca credenciales filtradas.
 
-![n8n](https://img.shields.io/badge/n8n-EA4B71?style=flat-square&logo=n8n&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
 
@@ -124,7 +124,7 @@ Diseño flujos que eliminan tareas manuales y vigilan la infraestructura sin que
 
 - Auditoría técnica de procesos internos y diseño de soluciones de digitalización para PYMEs.
 - Desarrollo backend y frontend de plataformas web orientadas al rendimiento.
-- Automatización de procesos con n8n, Python e integraciones por API: monitorización, alertas, captura de leads e informes.
+- Automatización de procesos con Python, Laravel e integraciones por API que corren en el propio servidor: monitorización, alertas, captura de leads e informes.
 - Diseño e implementación de arquitecturas de bases de datos relacionales.
 - Despliegue y administración de sistemas en entornos seguros (VPS Linux).
 

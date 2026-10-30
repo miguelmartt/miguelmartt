@@ -12,7 +12,7 @@ Para cambiar tu autoevaluación, edita `assets/skills.json`:
 {
   "skills": {
     "PHP & Laravel": 9,
-    "Automatización (n8n)": 9,
+    "Automatización": 9,
     "DevOps & VPS": 8,
     "Bases de Datos": 7,
     "JavaScript / Frontend": 7,
